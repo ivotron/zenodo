@@ -1,2 +1,2 @@
-# zenodo
-Github actions for zenodo
+# Github Actions for Zenodo
+
