@@ -4,5 +4,7 @@ workflow "Zenodo Actions" {
 
 action "upload" {
   uses = "uploader/"
-  args = ""
+  env = {
+    ACCESS_TOKEN =
+  }
 }
