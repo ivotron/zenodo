@@ -1,10 +1,7 @@
 workflow "Zenodo Actions" {
-  resolves = ["upload"]
+  resolves = "upload"
 }
-
 action "upload" {
   uses = "uploader/"
-  env = {
-    ACCESS_TOKEN =
-  }
+  secrets = ["ZENODO_API_TOKEN"]
 }
