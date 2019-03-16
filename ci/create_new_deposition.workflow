@@ -1,4 +1,4 @@
-workflow "Zenodo Actions" {
+workflow "Create Zenodo Depostion" {
   resolves = "create deposition"
 }
 action "create deposition" {
