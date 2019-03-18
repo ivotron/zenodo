@@ -5,6 +5,7 @@ if [[ -z "$ZENODO_FILES" ]]; then
         file_list+=$file,
     done
     export ZENODO_FILES=$file_list
+    echo $ZENODO_FILES
 fi
 if [[ -d "$ZENODO_OUTPUT_DIR" ]]; then
     IFS=','
