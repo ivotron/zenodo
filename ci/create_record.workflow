@@ -3,24 +3,24 @@ workflow "Create Record" {
 }
 
 action "create deposition" {
-  uses = "create_deposition/"
+  uses = "./create_deposition"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
-    ZENODO_METADATA = "../metadata.json"
+    ZENODO_METADATA = "./metadata.json"
   }
 }
 
 action "upload files" {
   needs = "create deposition"
-  uses = "upload_files/"
+  uses = "./upload_files"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
-    UPLOAD_FILES_DIRECTORY = "../files"
+    UPLOAD_FILES_DIRECTORY = "./files"
   }
 }
 
 action "publish" {
   needs="upload files"
-  uses = "publish_deposition/"
+  uses = "./publish_deposition"
   secrets = [ "ZENODO_API_TOKEN" ]
 }
