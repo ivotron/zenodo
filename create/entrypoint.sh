@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -ex
 curl --header "Content-Type: application/json" \
       --request POST \
-      --data @$ZENODO_METADATA \
+      --data @$ZENODO_METADATA_PATH \
       https://sandbox.zenodo.org/api/deposit/depositions?access_token=$ZENODO_API_TOKEN \
-      -o ./create_deposition/resp.json
+      -o $GITHUB_WORKSPACE/create_resp.json
