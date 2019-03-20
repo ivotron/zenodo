@@ -2,7 +2,7 @@ workflow "Create Zenodo Depostion" {
   resolves = "create"
 }
 action "create" {
-  uses = "popperized/zenodo/create@master"
+  uses = "./create"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
     ZENODO_METADATA_PATH = "./ci/metadata.json"
