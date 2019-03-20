@@ -14,5 +14,4 @@ Run `ci/create_record.workflow`. It would create a deposition with the provided 
 
 ### Environment variables
 * `ZENODO_METADATA` - **Required** Path to `metadata.json` file.
-* `UPLOAD_FILES_DIRECTORY` - **Required** path to directory containing the files to be uploaded.
-
+* `ZENODO_UPLOAD_PATH` - **Required** path to directory containing the files to be uploaded.
