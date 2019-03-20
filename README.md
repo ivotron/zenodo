@@ -3,16 +3,58 @@
 Documentation for each action could be found in their respective directories.
 
 ## Create a Record 
-To publish a record at [Zenodo](https://zenodo.org/), run `ci/create_record.workflow`.
+To publish a record at [Zenodo](https://zenodo.org/). See the below example.
+```hcl
+workflow "Create Record" {
+  resolves = "publish"
+}
 
+action "create" {
+  uses = "popperized/zenodo/create@master"
+  secrets = ["ZENODO_API_TOKEN"]
+  env = {
+    ZENODO_METADATA_PATH = "./ci/metadata.json"
+  }
+}
+
+action "upload" {
+  needs = "create"
+  uses = "popperized/zenodo/upload@master"
+  secrets = ["ZENODO_API_TOKEN"]
+  env = {
+    UPLOAD_FILES_DIRECTORY_PATH = "./files"
+  }
+}
+
+action "publish" {
+  needs="upload"
+  uses = ".popperized/zenodo/publish@master"
+  secrets = [ "ZENODO_API_TOKEN" ]
+}
+```
+Example `metadata.json` file
+```json
+{
+    "metadata": {
+        "title": "Title here",
+        "upload_type": "poster",
+        "description": "This is just for test",
+        "creators": [
+            {
+                "name": "Arshul, Arshul"
+            }
+        ]
+    }
+}
+```
 ### Usage
-Keep the metadata in `metadata.json` file.
-Put the files to be uploaded in `/files` directory.
-Run `ci/create_record.workflow`. It would create a deposition with the provided metadata and uploads the files in `/files` directory and publishes the record. You can find the `resp.json` file in `ci/publish_deposition` which would include the details about the record.
+Keep the metadata in a `json` file and set the path to this `json` file as `ZENODO_METADATA_PATH` environment variable.
+Put the files to be uploaded in a directory and set the path to this directory as `UPLOAD_FILES_DIRECTORY_PATH` environment variable.
+It would create a deposition with the provided metadata and uploads the files in `UPLOAD_FILES_DIRECTORY_PATH` directory and publishes the record.
 ### Secrets
 * `ZENODO_API_TOKEN` - **Required** The API access_token for zenodo account.
 
 ### Environment variables
-* `ZENODO_METADATA` - **Required** Path to `metadata.json` file.
-* `UPLOAD_FILES_DIRECTORY` - **Required** path to directory containing the files to be uploaded.
+* `ZENODO_METADATA_PATH` - **Required** Path to `json` file containing metadata.
+* `UPLOAD_FILES_DIRECTORY_PATH` - **Required** path to directory containing the files to be uploaded.
 

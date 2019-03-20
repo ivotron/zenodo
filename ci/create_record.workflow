@@ -2,25 +2,30 @@ workflow "Create Record" {
   resolves = "publish"
 }
 
-action "create deposition" {
-  uses = "./create_deposition"
+action "create" {
+  uses = "./create"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
-    ZENODO_METADATA = "./metadata.json"
+    ZENODO_METADATA_PATH = "./ci/metadata.json"
+    ZENODO_USE_SANDBOX = "true"
   }
 }
 
-action "upload files" {
-  needs = "create deposition"
-  uses = "./upload_files"
+action "upload" {
+  needs = "create"
+  uses = "./upload"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
-    UPLOAD_FILES_DIRECTORY = "./files"
+    UPLOAD_FILES_DIRECTORY_PATH = "./files"
+    ZENODO_USE_SANDBOX = "true"
   }
 }
 
 action "publish" {
-  needs="upload files"
-  uses = "./publish_deposition"
+  needs="upload"
+  uses = "./publish"
   secrets = [ "ZENODO_API_TOKEN" ]
+  env = {
+    ZENODO_USE_SANDBOX = "true"
+  }
 }
