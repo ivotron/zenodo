@@ -10,10 +10,10 @@ then
     export ZENODO_DEPOSIT_ID=$(jq '.id' $GITHUB_WORKSPACE/create_resp.json)
 fi
 
-if [[ -d "$UPLOAD_FILES_DIRECTORY_PATH" ]] && [ "$(ls -A $UPLOAD_FILES_DIRECTORY_PATH)" ];
+if [[ -d "$ZENODO_UPLOAD_PATH" ]] && [ "$(ls -A $ZENODO_UPLOAD_PATH)" ];
 then
-  echo "uploading files in $UPLOAD_FILES_DIRECTORY"
-  for file in "$UPLOAD_FILES_DIRECTORY_PATH"/*; do
+  echo "uploading files in $ZENODO_UPLOAD_PATH"
+  for file in "$ZENODO_UPLOAD_PATH"/*; do
     echo "$file"
     curl -F file=@"$file" \
     $BASE_URL/$ZENODO_DEPOSIT_ID/files?access_token=$ZENODO_API_TOKEN
