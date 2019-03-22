@@ -56,4 +56,3 @@ It would create a deposition with the provided metadata and uploads the files in
 ### Environment variables
 * `ZENODO_METADATA_PATH` - **Required** Path to `json` file containing metadata.
 * `ZENODO_UPLOAD_PATH` - **Required** path to directory containing the files to be uploaded.
-
