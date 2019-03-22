@@ -2,7 +2,7 @@
 This action will upload files to an existing unpublished deposition.
 
 ## Usage
-Put the files you want to upload in a directory and set the path to this directory as `UPLOAD_FILES_DIRECTORY_PATH` environment variable.
+Put the files you want to upload in a directory and set the path to this directory as `ZENODO_UPLOAD_PATH` environment variable.
 
 ```hcl
 workflow "Upload Files" {
