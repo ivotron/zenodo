@@ -48,8 +48,8 @@ Example `metadata.json` file
 ```
 ### Usage
 Keep the metadata in a `json` file and set the path to this `json` file as `ZENODO_METADATA_PATH` environment variable.
-Put the files to be uploaded in a directory and set the path to this directory as `UPLOAD_FILES_DIRECTORY_PATH` environment variable.
-It would create a deposition with the provided metadata and uploads the files in `UPLOAD_FILES_DIRECTORY_PATH` directory and publishes the record.
+Put the files to be uploaded in a directory and set the path to this directory as `ZENODO_UPLOAD_PATH` environment variable.
+It would create a deposition with the provided metadata and uploads the files in `ZENODO_UPLOAD_PATH` directory and publishes the record.
 ### Secrets
 * `ZENODO_API_TOKEN` - **Required** The API access_token for zenodo account.
 
