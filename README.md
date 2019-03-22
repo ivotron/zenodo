@@ -22,13 +22,13 @@ action "upload" {
   uses = "popperized/zenodo/upload@master"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
-    UPLOAD_FILES_DIRECTORY_PATH = "./files"
+    ZENODO_UPLOAD_PATH = "./files"
   }
 }
 
 action "publish" {
   needs="upload"
-  uses = ".popperized/zenodo/publish@master"
+  uses = "popperized/zenodo/publish@master"
   secrets = [ "ZENODO_API_TOKEN" ]
 }
 ```

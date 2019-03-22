@@ -16,7 +16,7 @@ action "upload" {
   uses = "./upload"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
-    UPLOAD_FILES_DIRECTORY_PATH = "./files"
+    ZENODO_UPLOAD_PATH = "./files"
     ZENODO_USE_SANDBOX = "true"
   }
 }
