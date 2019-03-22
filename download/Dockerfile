@@ -1,3 +1,4 @@
-FROM ubuntu:18.04
-RUN apt-get update && apt-get install -y curl jq
-ENTRYPOINT ["./download/entrypoint.sh"]
+FROM alpine:3.8
+RUN apk add --no-cache curl jq
+ADD entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]

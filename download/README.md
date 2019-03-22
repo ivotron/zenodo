@@ -2,18 +2,18 @@
 This action will download files from a record.
 
 ## Usage
-Run `ci/download.workflow`.
+
 ```hcl
 workflow "Download" {
   resolves = "download"
 }
 action "download" {
-  uses = "download/"
+  uses = "popperized/zenodo/download@master"
   secrets = ["ZENODO_API_TOKEN"]
   env = {
     ZENODO_RECORD_ID = "263717"
-    ZENODO_OUTPUT_DIR = "../files"
-    ZENODO_FILES="a_file_to_upload,another_file"
+    ZENODO_OUTPUT_PATH = "./data"
+    ZENODO_FILES="file1.ext,file2.ext"
   }
 }
 ```
@@ -22,5 +22,5 @@ action "download" {
 
 ## Environment variables
 * `ZENODO_RECORD_ID` - **Required** ID of the record from which files to be downloaded.
-* `ZENODO_OUTPUT_DIR`- **Required** Path to the output directory.
+* `ZENODO_OUTPUT_PATH`- **Required** Path to the output directory.
 * `ZENODO_FILES`- **Optional** String with names of files separated by `,` to be downloaded . If omitted, all files are downloaded from the record. 
