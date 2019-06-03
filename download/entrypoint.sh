@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -ex
 if [[ -z "$ZENODO_USE_SANDBOX" ]]; then
     BASE_URL="https://zenodo.org"
 else
@@ -6,7 +7,7 @@ else
 fi
 if [[ -z "$ZENODO_FILES" ]]; then
     file_list=""
-    for file in $(curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET $BASE_URL/api/deposit/depositions/$ZENODO_RECORD_ID/files?access_token=$ZENODO_API_TOKEN | jq -r '.[] | .filename'); do
+    for file in $(curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET $BASE_URL/api/records/$ZENODO_RECORD_ID | jq -r '.files |.[]| .filename'); do
         file_list=$file_list$file,
     done
     export ZENODO_FILES=$file_list

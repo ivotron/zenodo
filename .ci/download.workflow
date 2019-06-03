@@ -3,10 +3,9 @@ workflow "Download" {
 }
 action "download" {
   uses = "./download"
-  secrets = ["ZENODO_API_TOKEN"]
   env = {
-    ZENODO_RECORD_ID = "263717"
-    ZENODO_OUTPUT_PATH = "./data"
+    ZENODO_RECORD_ID = "263550"
+    ZENODO_OUTPUT_PATH = "./263550"
     ZENODO_FILES=""
     ZENODO_USE_SANDBOX = "true"
   }
