@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -ex
+set -e
 if [[ -z "$ZENODO_USE_SANDBOX" ]]; then
     BASE_URL="https://zenodo.org/api/deposit/depositions"
 else
